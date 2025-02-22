@@ -1,1 +1,1 @@
-# mood-music-ai
+# WeGood
