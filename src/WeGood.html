@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Evaluation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#your-progress">Your Progress</a></li>
+                <li><a href="#services">Services Available</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Credentials Form -->
+    <section id="credentials">
+        <h2>Welcome to Mental Health Evaluation</h2>
+        <form id="credentials-form">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <select id="gender" required>
+                <option value="">Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="email" id="email" placeholder="Email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Navigation -->
+    <section id="home">
+        <h2>Welcome, <span id="user-name">User</span>!</h2>
+        <p>Here, you can track your progress and engage in mental health activities.</p>
+    </section>
+
+    <!-- Quizlet Section -->
+    <section id="quizlet">
+        <h2>Take the Mental Health Quiz</h2>
+        <form id="quiz-form">
+            <div class="question" id="question-1">
+                <p>1. How would you describe your overall mental health in past month? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Excellent – I feel happy, motivated, and emotionally stable."> Excellent – I feel happy, motivated, and emotionally stable.
+                    <input type="radio" name="q1" value="Good – I have minor ups and downs but generally feel okay."> Good – I have minor ups and downs but generally feel okay.
+                    <input type="radio" name="q1" value="Fair – I struggle with my emotions sometimes but can manage."> Fair – I struggle with my emotions sometimes but can manage.
+                    <input type="radio" name="q1" value="Poor – I often feel overwhelmed, sad, or anxious. "> Poor – I often feel overwhelmed, sad, or anxious.
+                </div>
+            </div>
+            <div class="question" id="question-2">
+                <p>2. How often do you feel mentally exhausted? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Rarely or never"> Rarely or never
+                    <input type="radio" name="q1" value="Sometimes"> Sometimes
+                    <input type="radio" name="q1" value="Often"> Often
+                    <input type="radio" name="q1" value="Almost always"> Almost always
+                </div>
+            </div>
+            <div class="question" id="question-3">
+                <p>3. Have you been experiencing persistent sadness or hopelessness? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value=" No, not at all">  No, not at all
+                    <input type="radio" name="q1" value="Occasionally, but it doesn’t last long"> Occasionally, but it doesn’t last long
+                    <input type="radio" name="q1" value="Yes, frequently but I can still function"> Yes, frequently but I can still function
+                    <input type="radio" name="q1" value="Yes, almost every day and it affects my daily life"> Yes, almost every day and it affects my daily life
+                </div>
+            </div>
+            <div class="question" id="question-4">
+                <p>4. How often do you feel emotionally numb or detached? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Rarely or never"> Rarely or never
+                    <input type="radio" name="q1" value="Sometimes, in stressful situations"> Sometimes, in stressful situations
+                    <input type="radio" name="q1" value="Often, even in normal situations"> Often, even in normal situations
+                    <input type="radio" name="q1" value="Almost always, I feel disconnected from everything"> Almost always, I feel disconnected from everything
+                </div>
+            </div>
+            <div class="question" id="question-5">
+                <p>5. Do you experience mood swings that you find difficult to control? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="No, my emotions are stable"> No, my emotions are stable
+                    <input type="radio" name="q1" value="Occasionally, but they don’t interfere much"> Occasionally, but they don’t interfere much
+                    <input type="radio" name="q1" value="Often, and it affects my relationships/work"> Often, and it affects my relationships/work
+                    <input type="radio" name="q1" value="Almost always, and I struggle to manage them"> Almost always, and I struggle to manage them
+                </div>
+            </div>
+            <div class="question" id="question-6">
+                <p>6. How often do you feel anxious or worried? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value=" Rarely or never">  Rarely or never
+                    <input type="radio" name="q1" value="Sometimes, but I can control it"> Sometimes, but I can control it
+                    <input type="radio" name="q1" value="Frequently, and it’s difficult to manage"> Frequently, and it’s difficult to manage
+                    <input type="radio" name="q1" value="Almost always, and it disrupts my daily life"> Almost always, and it disrupts my daily life
+                </div>
+            </div>
+            <div class="question" id="question-7">
+                <p>7. Do you experience physical symptoms due to stress(e.g.,headaches,stomach issues,rapid heartbeat)? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="No, never"> No, never
+                    <input type="radio" name="q1" value="Occasionally, in high-stress situations"> Occasionally, in high-stress situations
+                    <input type="radio" name="q1" value="Frequently, and it’s uncomfortable"> Frequently, and it’s uncomfortable
+                    <input type="radio" name="q1" value="Almost always, and it interferes with my daily activities"> Almost always, and it interferes with my daily activities
+                </div>
+            </div>
+            <div class="question" id="question-8">
+                <p>8. How would you describe your sleep quality? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Excellent – I sleep well and wake up refreshed"> Excellent – I sleep well and wake up refreshed
+                    <input type="radio" name="q1" value="Good – I sleep well most nights with occasional disruptions"> Good – I sleep well most nights with occasional disruptions
+                    <input type="radio" name="q1" value="Fair – I have trouble falling asleep or staying asleep sometimes"> Fair – I have trouble falling asleep or staying asleep sometimes
+                    <input type="radio" name="q1" value="Poor – I rarely get enough restful sleep"> Poor – I rarely get enough restful sleep
+                </div>
+            </div>
+            <div class="question" id="question-9">
+                <p>9. How often do you struggle with sleep disturbances(insomnia,nightmares,waking up too early)? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Rarely or never"> Rarely or never
+                    <input type="radio" name="q1" value="Occasionally, but it doesn’t affect me much"> Occasionally, but it doesn’t affect me much
+                    <input type="radio" name="q1" value="Frequently, and it affects my energy levels"> Frequently, and it affects my energy levels
+                    <input type="radio" name="q1" value=" Almost always, and I feel exhausted during the day">  Almost always, and I feel exhausted during the day
+                </div>
+            </div>
+            <div class="question" id="question-10">
+                <p>10. How often do you feel fatigued or low on energy? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Rarely or never"> Rarely or never
+                    <input type="radio" name="q1" value="Sometimes, but I recover quickly"> Sometimes, but I recover quickly
+                    <input type="radio" name="q1" value="Frequently, and it affects my productivity"> Frequently, and it affects my productivity
+                    <input type="radio" name="q1" value="Almost always, and I struggle to get through the day"> Almost always, and I struggle to get through the day
+                </div>
+            </div>
+            <div class="question" id="question-11">
+                <p>11.Have you lost intrest in activities you once enjoyed? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="No, I still enjoy my hobbies and interests "> No, I still enjoy my hobbies and interests
+                    <input type="radio" name="q1" value="Occasionally, but I can still find joy in some activities"> Occasionally, but I can still find joy in some activities
+                    <input type="radio" name="q1" value="Frequently, and it’s hard to stay motivated"> Frequently, and it’s hard to stay motivated
+                    <input type="radio" name="q1" value="Almost always, and I don’t feel like doing anything"> Almost always, and I don’t feel like doing anything
+                </div>
+            </div>
+            <div class="question" id="question-12">
+                <p>12. How do you feel about yourself? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Positive – I feel confident and self-assured"> Positive – I feel confident and self-assured
+                    <input type="radio" name="q1" value="Neutral – I have ups and downs but generally feel okay"> Neutral – I have ups and downs but generally feel okay
+                    <input type="radio" name="q1" value="Negative – I often doubt myself and feel insecure"> Negative – I often doubt myself and feel insecure
+                    <input type="radio" name="q1" value="Very negative – I struggle with self-worth and self-acceptance"> Very negative – I struggle with self-worth and self-acceptance
+                    <input type="radio" name="q1" value="strongly-disagree"> Strongly Disagree
+                </div>
+            </div>
+            <div class="question" id="question-13">
+                <p>13. How often do you engage in negative self-talk? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Rarely or never"> Rarely or never
+                    <input type="radio" name="q1" value="Sometimes, but I can challenge it"> Sometimes, but I can challenge it
+                    <input type="radio" name="q1" value="Often, and it affects my confidence"> Often, and it affects my confidence
+                    <input type="radio" name="q1" value="Almost always, and it makes me feel worthless"> Almost always, and it makes me feel worthless
+                </div>
+            </div>
+            <div class="question" id="question-14">
+                <p>14. How connected do you feel to the people around you? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Very connected – I have strong, supportive relationships"> Very connected – I have strong, supportive relationships
+                    <input type="radio" name="q1" value="Somewhat connected – I have people to talk to but feel lonely sometimes"> Somewhat connected – I have people to talk to but feel lonely sometimes
+                    <input type="radio" name="q1" value="Not very connected – I struggle to maintain relationships"> Not very connected – I struggle to maintain relationships
+                    <input type="radio" name="q1" value="Completely disconnected – I feel isolated and alone"> Completely disconnected – I feel isolated and alone
+                </div>
+            </div>
+            <div class="question" id="question-15">
+                <p>15.Do you feel comfortable opening up to others about your feelings? .</p>
+                <div class="options">
+                    <input type="radio" name="q1" value="Yes, I have a strong support system"> Yes, I have a strong support system
+                    <input type="radio" name="q1" value="Sometimes, but I choose carefully who I talk to"> Sometimes, but I choose carefully who I talk to
+                    <input type="radio" name="q1" value="Rarely, I find it hard to trust people with my emotions"> Rarely, I find it hard to trust people with my emotions
+                    <input type="radio" name="q1" value="Never, I keep everything to myself "> Never, I keep everything to myself
+                </div>
+            </div>
+            <!-- Add more questions (15 in total) -->
+            <button type="submit">Submit Quiz</button>
+        </form>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Available Services</h2>
+        <div id="breathing-exercise">
+            <button onclick="getBreathingExercise()">Start Breathing Exercise</button>
+        </div>
+        <div id="mood-journal">
+            <h3>Mood Journal</h3>
+            <div contenteditable="true" id="journal-entry">Write your thoughts here...</div>
+        </div>
+        <div id="habit-tracker">
+            <h3>Habit Tracker</h3>
+            <div id="habit-status"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Our motto is to provide mental health care and detect mental health of the user for free.</p>
+    </section>
+
+    <!-- Chatbot Section (Totoro) -->
+    <section id="chatbot">
+        <h2>Chat with Totoro</h2>
+        <div id="chat-box">
+            <div id="chat-output"></div>
+            <input type="text" id="chat-input" placeholder="Ask Totoro something..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </section>
+
+    <script src="WeGood.js"></script>
+</body>
+</html>
