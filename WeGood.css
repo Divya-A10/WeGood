@@ -1,0 +1,82 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    margin: 20px;
+}
+
+#credentials input, #credentials select {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#journal-entry {
+    width: 100%;
+    height: 200px;
+    border: 2px solid #ccc;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#chat-input {
+    width: 80%;
+    padding: 10px;
+}
+
+#chat-output {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #eaeaea;
+    border-radius: 5px;
+}
+
+#quiz-form input[type="radio"] {
+    margin: 5px;
+}
+
+#quiz-form button {
+    margin-top: 20px;
+}
