@@ -1,15 +1,12 @@
-// app.js
 // Handle credentials form submission
-// Handle credentials form submission
-document.getElementById("credentials-form").addEventListener("submit", function(e) {
+document.getElementById("credentials-form").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevent the form from reloading the page
     const name = document.getElementById("name").value; // Get the name input value
     document.getElementById("user-name").innerText = name; // Display the name in the UI
     alert("Credentials saved! Welcome, " + name); // Show a welcome alert
 });
-
 // Handle quiz form submission
-document.getElementById("quiz-form").addEventListener("submit", async function(e) {
+document.getElementById("quiz-form").addEventListener("submit", async function (e) {
     e.preventDefault(); // Prevent form reload
 
     // Collect quiz answers
@@ -18,7 +15,6 @@ document.getElementById("quiz-form").addEventListener("submit", async function(e
         q2: document.querySelector('input[name="q2"]:checked').value,
         // Collect other answers similarly
     };
-
     try {
         // Send quiz answers to the backend for mood analysis
         const response = await axios.post('http://localhost:5000/analyze-mood', quizAnswers);
@@ -110,4 +106,3 @@ async function getMoodPlaylist(mood) {
         return [];
     }
 }
-

@@ -1,5 +1,3 @@
-// .env file loading
-// .env file loading
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
@@ -7,12 +5,21 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const axios = require("axios");
 const bodyParser = require("body-parser");
+const chatbotRoutes = require("./routes/chatbot");
+const spotifyRoutes = require("./routes/spotify");
 const { GoogleGenerativeAI } = require("@google/generative-ai"); // Gemini API
 const { Schema } = mongoose;
 
 const app = express();
-const PORT = process.env.PORT || 5500; // <-- Fixed PORT
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+const PORT = 3000;
+
+// Routes
+app.use("/api/chatbot", chatbotRoutes);
+app.use("/api/spotify", spotifyRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
 
 // Middleware
 app.use(express.json());
@@ -29,17 +36,11 @@ app.get("/", (req, res) => {
 });
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/mentalhealt', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/mentalhealtDB', {
+  
 })
 .then(() => console.log("✅ MongoDB Connected!"))
 .catch(err => console.error("❌ MongoDB Connection Error:", err));
-
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("✅ MongoDB Connected!"))
-  .catch(err => console.error("❌ MongoDB Connection Error:", err));
 
 // User Schema
 const userSchema = new Schema({
@@ -140,14 +141,6 @@ app.get("/mood-music/:mood", async (req, res) => {
 });
 
 // Start Server
-app.listen(port, () => {
-  console.log(`🚀 Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
-
-
-
-
-
-
-

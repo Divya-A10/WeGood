@@ -1,4 +1,3 @@
-// youtube.js
 const axios = require('axios');
 
 async function getRelaxationVideo() {
