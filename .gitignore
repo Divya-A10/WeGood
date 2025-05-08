@@ -1,1 +1,50 @@
+# Node modules
 node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.*
+
+# Flask logs and temp files
+*.log
+instance/
+*.db
+*.sqlite3
+temp.jpg
+
+# Frontend build
+dist/
+build/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Flask uploads
+*.jpg
+*.jpeg
+*.png
+
+# Coverage reports
+coverage/
+*.cover
+*.pyc
+htmlcov/
+
+# Docker files (if you use Docker and want to ignore built containers/images)
+*.pid
+*.pid.lock
+docker-compose.override.yml
