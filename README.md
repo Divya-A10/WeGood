@@ -13,3 +13,7 @@ MentalHealt is a full-stack web application designed to support users' mental we
 
 ## 🗂️ Project Structure
 
+🧑‍💻 Author
+
+Divya Avanigadda — GitHub @Divya-A10
+
