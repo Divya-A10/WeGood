@@ -1,3 +1,46 @@
+async function sendMessage(userMessage) {
+    const chatOutput = document.getElementById("chat-output");
+    if (!userMessage) return;
+  
+    // Display user message
+    chatOutput.innerHTML += `<p class='user'><strong>You:</strong> ${userMessage}</p>`;
+  
+    try {
+      const response = await fetch("/api/chatbot", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMessage }),
+      });
+      const data = await response.json();
+      const botMessage = data.response || "Sorry, I couldn't process that.";
+  
+      // Display bot reply
+      chatOutput.innerHTML += `<p class='bot'><strong>Totoro:</strong> ${botMessage}</p>`;
+    } catch (error) {
+      console.error("Error talking to chatbot backend:", error);
+      chatOutput.innerHTML += `<p class='bot'><strong>Totoro:</strong> Error connecting to chatbot.</p>`;
+    }
+  }
+  
+  // Bind sendMessage to UI events (button click, enter key)
+  document.addEventListener("DOMContentLoaded", () => {
+    const inputField = document.getElementById("chat-input");
+    const sendButton = document.querySelector(".send-btn");
+  
+    sendButton.addEventListener("click", () => {
+      sendMessage(inputField.value);
+      inputField.value = "";
+    });
+  
+    inputField.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        sendMessage(inputField.value);
+        inputField.value = "";
+      }
+    });
+  });
+  
+
 // Handle credentials form submission
 document.getElementById("credentials-form").addEventListener("submit", function (e) {
     e.preventDefault(); // Prevent the form from reloading the page

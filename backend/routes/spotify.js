@@ -3,6 +3,21 @@ const SpotifyWebApi = require("spotify-web-api-node");
 const axios = require("axios");
 const router = express.Router();
 
+router.post("/data", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const response = await axios.get("https://api.spotify.com/v1/me", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error("Spotify API Error:", error);
+    res.status(500).send("Error fetching Spotify data");
+  }
+});
+
+module.exports = router;
+
 // Spotify API setup using spotify-web-api-node
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -75,4 +90,4 @@ router.get("/mood-music/:mood", async (req, res) => {
 });
 
 // Export both the router and the getMoodPlaylist function
-module.exports = { router, getMoodPlaylist };
+module.exports = router;

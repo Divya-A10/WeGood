@@ -48,3 +48,5 @@ htmlcov/
 *.pid
 *.pid.lock
 docker-compose.override.yml
+.env
+.env
