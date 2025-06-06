@@ -127,7 +127,7 @@
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
     "validate": "echo \"Validation passed!\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -139,5 +139,10 @@
   "bugs": {
     "url": "https://github.com/Divya-A10/WeGood/issues"
   },
-  "homepage": "https://github.com/Divya-A10/WeGood#readme"
+  "homepage": "https://github.com/Divya-A10/WeGood#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.1"
+  }
 }

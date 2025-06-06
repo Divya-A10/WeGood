@@ -136,14 +136,12 @@ async function sendMessage() {
 // Spotify API integration (example of how you might use it)
 async function getMoodPlaylist(mood) {
     try {
-        // Mock response for mood-based playlist
-        const playlists = {
-            happy: ["Happy Song 1", "Happy Song 2", "Happy Song 3"],
-            sad: ["Sad Song 1", "Sad Song 2", "Sad Song 3"],
-            anxious: ["Calm Song 1", "Calm Song 2", "Calm Song 3"],
-        };
-
-        return playlists[mood.toLowerCase()] || ["Default Song"];
+        const response = await fetch(`/api/spotify/mood-music/${mood}`);
+        if (!response.ok) {
+            throw new Error(`Error fetching playlist: ${response.statusText}`);
+        }
+        const data = await response.json();
+        return data.playlists; // Expect an array of playlists
     } catch (error) {
         console.error("Error fetching playlist:", error);
         return [];

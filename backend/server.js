@@ -1,12 +1,14 @@
+// server.js
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
 const chatbotRoutes = require("./routes/chatbot");
 const spotifyRoutes = require("./routes/spotify");
+const { GoogleGenerativeAI } = require("@google/generative-ai"); // Gemini API
+const { Schema } = mongoose;
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,11 +21,6 @@ app.use(bodyParser.json());
 // Serve static files
 app.use(express.static("public"));
 app.use(express.static(__dirname));
-
-// Routes
-// Make sure chatbotRoutes and spotifyRoutes are express.Router instances
-app.use("/api/chatbot", chatbotRoutes);
-app.use("/api/spotify", spotifyRoutes);
 
 // Default route
 app.get("/", (req, res) => {
@@ -59,6 +56,10 @@ app.use((req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app; // <-- this line is key

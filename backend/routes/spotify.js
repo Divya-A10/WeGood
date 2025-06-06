@@ -37,52 +37,30 @@ spotifyApi.clientCredentialsGrant().then(
 
 // Function to get a mood-based playlist using spotify-web-api-node
 function getMoodPlaylist(mood) {
-  return spotifyApi.searchTracks(mood).then(
+  // Use the searchPlaylists method instead of searchTracks to get playlists
+  return spotifyApi.searchPlaylists(mood, { limit: 5 }).then( // limit to 5 playlists
     function (data) {
-      const tracks = data.body.tracks.items;
-      return tracks.map((track) => ({
-        name: track.name,
-        artist: track.artists[0].name,
-        url: track.external_urls.spotify,
+      const playlists = data.body.playlists.items;
+      return playlists.map((playlist) => ({
+        name: playlist.name,
+        owner: playlist.owner.display_name,
+        url: playlist.external_urls.spotify,
+        imageUrl: playlist.images.length > 0 ? playlist.images[0].url : null, // Get playlist image
       }));
     },
     function (err) {
-      console.log("Error searching tracks:", err);
+      console.log("Error searching playlists:", err);
+      return []; // Return empty array in case of error
     }
   );
 }
 
-// Route to get mood-based music using axios
+// Route to get mood-based music using spotify-web-api-node
 router.get("/mood-music/:mood", async (req, res) => {
   const { mood } = req.params;
   try {
-    const playlistMap = {
-      Happy: "37i9dQZF1DXdPec7aLTmlC",
-      Neutral: "37i9dQZF1DX4WYpdgoIcn6",
-      Stressed: "37i9dQZF1DWZqd5JICZI0u",
-      Depressed: "37i9dQZF1DX3YSRoSdA634",
-    };
-    const playlistId = playlistMap[mood] || "37i9dQZF1DX4WYpdgoIcn6";
-
-    const tokenResponse = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      new URLSearchParams({
-        grant_type: "client_credentials",
-        client_id: process.env.SPOTIFY_CLIENT_ID,
-        client_secret: process.env.SPOTIFY_CLIENT_SECRET,
-      }),
-      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-    );
-
-    const accessToken = tokenResponse.data.access_token;
-    const spotifyResponse = await axios.get(
-      `https://api.spotify.com/v1/playlists/${playlistId}`,
-      {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      }
-    );
-
-    res.status(200).send({ music: spotifyResponse.data });
+    const playlists = await getMoodPlaylist(mood); // Use the getMoodPlaylist function
+    res.status(200).send({ playlists: playlists }); // Send back playlists
   } catch (error) {
     console.error("Error fetching Spotify data:", error);
     res.status(500).send("Error fetching Spotify data");
@@ -90,4 +68,8 @@ router.get("/mood-music/:mood", async (req, res) => {
 });
 
 // Export both the router and the getMoodPlaylist function
+<<<<<<< HEAD
 module.exports = router;
+=======
+module.exports = { router, getMoodPlaylist };
+>>>>>>> 5c177d7 (updates from firebase)
