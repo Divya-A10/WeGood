@@ -8,7 +8,6 @@ MentalHealt is a full-stack web application designed to support users' mental we
 - 🎵 **Mood-based Spotify music** suggestions
 - 📺 **YouTube relaxation videos** for stress relief
 - 📋 **Self-assessment quiz** to track mood
-- 🧠 **Sentiment & facial expression analysis** (optional with DeepFace)
 - 🛠️ MongoDB for storing user preferences and mood history
 
 ## 🗂️ Project Structure
